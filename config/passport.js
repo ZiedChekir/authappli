@@ -1,6 +1,4 @@
-// config/passport.js
 
-// load all the things we need
 var passport =require('passport');
 var LocalStrategy   = require('passport-local').Strategy;
 
@@ -41,7 +39,17 @@ var User            = require('../models/users');
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) {
+        req.checkBody('email','invalid email ! ').notEmpty().isEmail();
+        req.checkBody('password','password is too short ').notEmpty().isLength({min:4});
+        var errors = req.validationErrors();
+        if(errors){
+          var messages =[];
+          errors.forEach(function(error){
+            messages.push(error.msg);
 
+          });
+          return done(null,false, req.flash('error',messages));
+        }
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
@@ -81,13 +89,24 @@ var User            = require('../models/users');
     }));
 
     passport.use('local-login', new LocalStrategy({
+
           // by default, local strategy uses username and password, we will override with email
           usernameField : 'email',
           passwordField : 'password',
           passReqToCallback : true // allows us to pass back the entire request to the callback
       },
       function(req, email, password, done) { // callback with email and password from our form
+        req.checkBody('email','invalid email ! ').notEmpty().isEmail();
+        req.checkBody('password','pass word is too short ').notEmpty().isLength({min:4});
+        var errors = req.validationErrors();
+        if(errors){
+          var messages =[];
+          errors.forEach(function(error){
+            messages.push(error.msg);
 
+          });
+          return done(null,false, req.flash('error',messages));
+        }
           // find a user whose email is the same as the forms email
           // we are checking to see if the user trying to login already exists
           User.findOne({ 'local.email' :  email }, function(err, user) {

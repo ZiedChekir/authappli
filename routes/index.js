@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var mongoose = require('mongoose');
 var products = require('../models/products');
+require('express-session');
 mongoose.connect('localhost:27017/authapp');
 /* GET home page. */
 
@@ -13,12 +14,12 @@ mongoose.connect('localhost:27017/authapp');
       });
 
       router.get('/login', function(req, res, next) {
-        res.render('user/login', {messages:req.flash('loginMessage')});
+        res.render('user/login', {messages: req.flash()});
       });
 
 
       router.get('/signup',function(req,res){
-        res.render('user/signup', { messages: req.flash('signupMessage'),hasErorrs:req.flash('signupMessage').length != 0});
+        res.render('user/signup', { messages: req.flash()});
       });
       //router.post('/signup', do all our passport stuff here);
       router.get('/profile', isLoggedIn, function(req, res) {

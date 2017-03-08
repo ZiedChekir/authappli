@@ -11,6 +11,8 @@ var app = express();
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var validator = require('express-validator');
+
 
   mongoose.createConnection('localhost:27017/authapp');
 // require('./config/passport');
@@ -24,6 +26,7 @@ app.set('view engine', '.hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());
 app.use(cookieParser());
 app.use(session({secret:'mysuperscret',resave:false,saveUninitialized:false}));
 

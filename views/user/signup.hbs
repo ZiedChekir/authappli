@@ -1,6 +1,10 @@
 <h1>Sign up</h1>
 {{#each messages}}
-  <p>{{this}}</p>
+  <div class="alert alert-danger" role="alert">
+    <ul>
+      <li>{{this}}</li>
+    </ul>
+  </div>
 {{/each}}
 <form action="/signup" method="post">
        <div class="form-group">

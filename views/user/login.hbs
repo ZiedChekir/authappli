@@ -1,12 +1,17 @@
-{{#if isMessages}}
-  <div class="">
-    <ul>
-      {{#each messages}}
-        <li>{{this}}</li>
-      {{/each}}
-    </ul>
-  </div>
-{{/if}}
+
+  {{#each messages}}
+    <div class="alert alert-danger" role="alert">
+        <ul>
+
+                <li>{{this}}</li>
+
+        </ul>
+        
+
+        </div>
+  {{/each}}
+
+
 <h1>login page</h1>
 <form action="/login" method="post">
         <div class="form-group">
