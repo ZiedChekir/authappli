@@ -1,3 +1,4 @@
+//PAckagess ================== PAckages ================
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,20 +6,20 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
-var index = require('./routes/index');
 var mongoose = require('mongoose');
 var app = express();
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
-
-
+//===================MODULES ============================
+var index = require('./routes/index');
+var user =  require('./routes/user');
+//connect to the fucking database
   mongoose.createConnection('localhost:27017/authapp');
-// require('./config/passport');
+
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout:'layout',extname:'.hbs'}));
-
 app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
@@ -37,6 +38,8 @@ app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
+app.use('/user',user );
+
 
 
 // catch 404 and forward to error handler
