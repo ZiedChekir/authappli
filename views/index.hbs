@@ -5,7 +5,26 @@
     <title>auth</title>
   </head>
   <body>
-    <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Local Signup</a>
+
+
+
+
+<div class="row">
+
+  {{# each Products}}
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img class="img-responsive" src= "{{this.imgpath}}" alt="call of duty">
+      <div class="caption">
+        <h3>{{this.title}}</h3>
+        <p>{{this.description}}</p>
+
+        <div class="clearfix" > <div class="price pull-left">
+          {{this.price}}$
+        </div> <div class="pull-right buy-sec"><a href="#" class="btn btn-default btn-success " role="button">Buy</a><a href="#" class="btn btn-default" role="button">More</a></div></div>
+      </div>
+    </div>
+  </div>
+  {{/each }}
   </body>
 </html>

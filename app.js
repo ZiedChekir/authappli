@@ -12,10 +12,11 @@ var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
 
-mongoose.connect('localhost:27017/authapp');
+  mongoose.createConnection('localhost:27017/authapp');
 // require('./config/passport');
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout:'layout',extname:'.hbs'}));
+
 app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
@@ -28,7 +29,7 @@ app.use(session({secret:'mysuperscret',resave:false,saveUninitialized:false}));
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport')(passport);
+require('./config/passport');
 app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'public')));

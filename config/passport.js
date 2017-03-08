@@ -1,13 +1,14 @@
 // config/passport.js
 
 // load all the things we need
+var passport =require('passport');
 var LocalStrategy   = require('passport-local').Strategy;
 
 // load up the user model
 var User            = require('../models/users');
 
 // expose this function to our app using module.exports
-module.exports = function(passport) {
+
 
     // =========================================================================
     // passport session setup ==================================================
@@ -107,4 +108,3 @@ module.exports = function(passport) {
           });
 
       }));
-};
