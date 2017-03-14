@@ -27,13 +27,13 @@ var product = [
 var done = 0;
 for (var i = 0; i < product.length; i++) {
   console.log(product[i]);
+  // for (var b = 0; b < .length; b++) {
+  //
+  // }
   product[i].save(function(err,result){
     done++
     if (done === product.length){
-      exit();
+      mongoose.disconnect();
     }
   });
-}
-function exit(){
-  mongoose.disconnect();
 }

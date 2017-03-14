@@ -12,16 +12,22 @@ var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
+mongoose.Promise = global.Promise;
 //===================MODULES ============================
 var index = require('./routes/index');
 var user =  require('./routes/user');
 //connect to the fucking database
+
   mongoose.createConnection('localhost:27017/authapp');
 
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout:'layout',extname:'.hbs'}));
 app.set('view engine', '.hbs');
 
+app.use(function(req,res,next){
+  res.locals.loggedIn = req.isAuthenticated();
+  next();
+});
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));

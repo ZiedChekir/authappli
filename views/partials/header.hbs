@@ -24,18 +24,18 @@
                 User Management <span class="caret"></span></a>
                     <ul class="dropdown-menu">
 
-                      <li><a href="#">User Account</a></li>
-                      <li><a href="#">Basket</a></li>
+                      <li><a href="/user/profile">User Account</a></li>
+                      <!-- <li><a href="#"></a></li> -->
                       <li role="separator" class="divider"></li>
-                      <li><a href="#">Log out</a></li>
+                      <li><a href="/user/logout">Log out</a></li>
 
                     </ul>
                   </li>
                 </ul>
         {{else}}
         <ul class="nav navbar-nav navbar-right">
-          <li>  <a href="/user/login" class="btn btn-default"><span class="fa fa-user"></span>  Login</a></li>
-          <li>  <a href="/user/signup" class="btn btn-default"><span class="fa fa-user"></span>  Register</a></li>
+          <li>  <a href="/user/login"><span class="fa fa-user"></span> Login</a></li>
+          <li>  <a href="/user/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
 
         </ul>
         {{/if}}
