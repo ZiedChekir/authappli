@@ -38,7 +38,7 @@ app.use(session({
   resave:false,
   saveUninitialized:false,
   store:new mongoStore({mongooseConnection:mongoose.connection}),
-  cookie:{maxAge:60*1000 *2}
+  cookie:{maxAge:300000}
 }));
 
 app.use(passport.initialize());
@@ -51,8 +51,8 @@ app.use('/', index);
 app.use('/user',user );
 
 app.use(function(req,res,next){
-  res.locals.loggedIn = req.isAuthenticated();
-  res.locals.session = req.session;
+
+  res.locals.sessions = req.session;
   next();
 });
 
@@ -66,6 +66,7 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
+
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

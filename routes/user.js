@@ -10,7 +10,8 @@ var csrfProtection = require('csrf');
 
   router.get('/profile', isLoggedIn, function(req, res) {
        res.render('user/profile', {
-           user : req.user
+           user : req.user,
+           cart : req.session.cart
        });
    });
    router.get('/logout', function(req, res) {
@@ -25,11 +26,11 @@ var csrfProtection = require('csrf');
 
 router.get('/signup', function(req,res){
   // res.render('user/signup', { messages: req.flash(), csrfToken:req.csrfToken()});
-  res.render('user/signup', { messages: req.flash()});
+  res.render('user/signup', {cart : req.session.cart, messages: req.flash()});
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('user/login', {messages: req.flash()});
+  res.render('user/login', {cart : req.session.cart,messages: req.flash()});
 });
 
 
