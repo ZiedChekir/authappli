@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-6 col-sm-6  col-md-offset-3 col-sm-offset-3">
+        <h3>Total: {{total}}$</h3>
+        <div id="payment-errors" class="alert alert-danger {{#if noError}}hidden{{/if}}">
+
+            {{errorMsg}}
+
+        </div>
+        <form action="/checkout" method="post" id="payment-form" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj">
+
+
+
+            <br>
+            <div class='form-row'>
+
+
+                <div class='form-group card required'>
+
+                    <label class='control-label'>Full name</label>
+                    <input class='form-control' id="name-card" name="name" size='4' type='text'>
+
+                </div>
+            </div>
+
+            <div class='form-row'>
+                <div class='form-group card required'>
+                    <label class='control-label'>Card Number</label>
+                    <input autocomplete='off' class='form-control' id="card-number" size='20' type='text'>
+                </div>
+            </div>
+            <div class='form-row'>
+                <div class='form-group card required'>
+                    <label class='control-label'> Address</label>
+                    <input autocomplete='off' class='form-control' size='20' type='text' name="adress">
+                </div>
+            </div>
+            <div class='form-row'>
+                <div class='form-group cvc required'>
+                    <label class='control-label'>CVC</label>
+                    <input autocomplete='off' class='form-control' id="card-cvc" placeholder='ex. 311' size='4' type='text'>
+                </div>
+                <div class='form-group expiration required'>
+                    <label class='control-label'>Expiration</label>
+                    <input class='form-control' id="card-expiry-month" placeholder='MM' size='2' type='text'>
+                </div>
+                <div class='form-group expiration required'>
+                    <label class='control-label'>Year</label>
+                    <input class='form-control' id="card-expiry-year" placeholder='YYYY' size='4' type='text'>
+                </div>
+            </div>
+
+            <button class='form-control btn btn-primary' type='submit'> Submit →</button>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="javascript/checkout.js"></script>

@@ -1,27 +1,22 @@
-
-  {{#each messages}}
+{{#each messages}}
     <div class="alert alert-danger" role="alert">
         <ul>
-
-                <li>{{this}}</li>
-
+            <li>{{this}}</li>
         </ul>
-
-
-        </div>
-  {{/each}}
-
+    </div>
+{{/each}}
 
 <h1>login page</h1>
 <form action="/user/login" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
-        </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text" class="form-control" name="email">
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="password">
+    </div>
 
-        <button type="submit" class="btn btn-success btn-lg">Login</button>
-    </form>
+    <button type="submit" class="btn btn-success btn-lg">Login</button>
+</form>
+<p>Don't have an account ? <a href="/user/signup">Sign up</a></p>

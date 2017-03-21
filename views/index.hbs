@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>auth</title>
-  </head>
-  <body>
 
-{{sessions}}
+{{#if successMessages}}
+<div class="alert alert-success">
+  {{successMessages}}
+</div>
+{{/if}}
 
 
 <div class="row">
@@ -26,5 +23,3 @@
     </div>
   </div>
   {{/each }}
-  </body>
-</html>
