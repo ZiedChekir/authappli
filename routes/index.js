@@ -38,8 +38,6 @@ router.get('/reduce/:id', function(req, res, next) {
   var productId = req.params.id ;
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   cart.reduceByOne(productId);
-if(cart.items[productId].qty <= 0)
-  delete
   req.session.cart = cart;
   res.redirect('/cart');
 
