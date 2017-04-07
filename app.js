@@ -47,14 +47,19 @@ require('./config/passport');
 app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', index);
-app.use('/user',user );
 
 app.use(function(req,res,next){
 
-  res.locals.sessions = req.session;
+  res.locals.session = req.session;
+  res.locals.user = req.user;
+    res.locals.cart = req.session.cart;
   next();
 });
+
+app.use('/', index);
+app.use('/user',user );
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

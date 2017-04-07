@@ -1,32 +1,94 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">
+
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/user/logout" class="btn btn-default btn-sm">Logout</a>
+        <h1><span class="fa fa-anchor"></span> Profile</h1>
+
     </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-                <p>
-                    <strong>id</strong>: {{ user._id}}<br>
-                    <strong>email</strong>: {{ user.local.email}} <br>
-                    <strong>password</strong>: {{user.local.password }}
-                </p>
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="http://images.iimg.in/c/569f4771c45d324bda8b4660-4-501-0-1453279096/google/user-icon-png-pnglogocom.img?crop=1" class="img-responsive" alt="">
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            {{user.local.email}}
+                        </div>
+                        <div class="profile-usertitle-job">
+
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
+    					<a class="btn btn-success btn-sm" href="/">Add picture</a>
+              <a class="btn btn-danger btn-sm" href="/user/logout">Logout</a>
+
+    				</div>
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="/user/profile">
+                                    <i class="glyphicon glyphicon-home"></i> Account Settings  </a>
+                            </li>
+                            <li>
+                                <a href="/user/profile/orders">
+                                    <i class="glyphicon glyphicon-user"></i> Orders</a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="glyphicon glyphicon-ok"></i> Tasks </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-flag"></i> Help </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
+                </div>
+            </div>
+            <div class="col-md-9">
+
+                <div class="profile-content">
+                  {{#if accountSettings}}
+<h1>account settings</h1>
+                  {{/if}}
+
+
+                  {{#if orders}}
+
+
+                    {{#each orders}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>Total Price : {{this.cart.totalPrice}}$</strong> </div>
+                            <ul class="list-group">
+                                {{#each this.cart.items}}
+                                    <li class="list-group-item">
+                                        <strong>{{this.item.title}}</strong> {{this.price}}$ <span class="badge">{{this.qty}}</span>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/each}}
+                  {{/if}}
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <center>
 
-{{#each orders}}
-    <div class="panel panel-default">
-        <div class="panel-heading"><strong>Total Price : {{this.cart.totalPrice}}$</strong> </div>
-        <ul class="list-group">
-            {{#each this.cart.items}}
-                <li class="list-group-item">
-                    <strong>{{this.item.title}}</strong> {{this.price}}$ <span class="badge">{{this.qty}}</span>
-                </li>
-            {{/each}}
-        </ul>
-    </div>
-{{/each}}
+
+
+        <strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>
+    </center>
+    <br>
+    <br>

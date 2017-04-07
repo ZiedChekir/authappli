@@ -12,12 +12,16 @@ var Order = require('../models/order');
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
+  console.log( 'this is session' + res.locals.session);
+  console.log( 'this is user' + res.locals.user);
+  console.log( 'this is cart' + res.locals.cart);
+
+
 var successMsg = req.flash('success')[0];
   products.find(function(err, doc){
     res.render('index', {
        Products: doc,
-       user: req.user,
-       cart : req.session.cart,
+
        successMessages:successMsg
 
      });
@@ -26,11 +30,11 @@ var successMsg = req.flash('success')[0];
 
 router.get('/cart', function(req, res, next) {
   if(!req.session.cart){
-    return   res.render('cart',{user: req.user,products : null});
+    return   res.render('cart',{products : null});
 
   }
   var cart = new Cart(req.session.cart);
-  res.render('cart',{user: req.user,cart : cart, products:cart.generateArray(),totalPrice:cart.totalPrice});
+  res.render('cart',{ products:cart.generateArray(),totalPrice:cart.totalPrice});
 
 });
 

@@ -6,26 +6,18 @@ var mongoose = require('mongoose');
 var csrfProtection = require('csrf');
 var Order = require('../models/order');
 var Cart =require('../models/cart');
+
+var profile = require('./profile');
 // router.use(csrfProtection);
 //Open connection with the database
   mongoose.createConnection('localhost:27017/authapp');
 
-  router.get('/profile', isLoggedIn, function(req, res) {
-    Order.find({user:req.user},function(err, orders){
-      if(err)
-        return res.write(err);
-      var cart;
 
-      orders.forEach(function(order){
-        cart = new Cart(order.cart);
-        order.item = cart.generateArray();
-      });
-      res.render('user/profile', {
-          user : req.user,
-          cart : req.session.cart,
-          orders: orders
-      });
-    });
+  router.use('/profile',profile);
+  router.get('/profile', isLoggedIn, function(req, res) {
+
+
+  
 
    });
    router.get('/logout', function(req, res) {
@@ -41,11 +33,11 @@ var Cart =require('../models/cart');
 
 router.get('/signup', function(req,res){
   // res.render('user/signup', { messages: req.flash(), csrfToken:req.csrfToken()});
-  res.render('user/signup', {cart : req.session.cart, messages: req.flash()});
+  res.render('user/signup', { messages: req.flash()});
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('user/login', {cart : req.session.cart,messages: req.flash()});
+  res.render('user/login', {messages: req.flash()});
 });
 
 
