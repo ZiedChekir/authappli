@@ -6,17 +6,61 @@
     </div>
 {{/each}}
 
-<h1>login page</h1>
-<form action="/user/login" method="post">
-    <div class="form-group">
-        <label>Email</label>
-        <input type="text" class="form-control" name="email">
-    </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" class="form-control" name="password">
-    </div>
 
-    <button type="submit" class="btn btn-success btn-lg">Login</button>
-</form>
-<p>Don't have an account ? <a href="/user/signup">Sign up</a></p>
+
+<div id="root" style="width: 280px; margin: 40px auto; padding: 10px;">
+
+
+
+</div>
+
+<script type="text/javascript">
+    var lock = new Auth0Lock('mJj9pgq1Ht9wxl9IV6IoVPudUwY4fe7A', 'zied.eu.auth0.com', {
+        additionalSignUpFields: [
+          {
+              name: "full_name",
+              placeholder: "Enter your full name",
+              icon:""
+          },
+          {
+                name: "address",
+                placeholder: "enter your address",
+                // The following properties are optional
+                icon: "",
+                prefill: "",
+                validator: function(address) {
+                    return {
+                        valid: address.length >= 10,
+                        hint: "Must have 10 or more chars" // optional
+                    };
+                }
+            }
+
+        ],
+        socialButtonStyle: 'small',
+        closable: false,
+        auth: {
+            redirectUrl: 'http://localhost:3000/user/callback',
+            responseType: 'code',
+            params: {
+                scope: 'openid name email picture'
+            }
+        },
+        theme: {
+            displayName: "Klapero",
+            logo: 'https://s-media-cache-ak0.pinimg.com/600x315/a2/19/e1/a219e1302acd9caf8949f7efb180a75e.jpg',
+            primaryColor: 'black'
+        },
+        languageDictionary: {
+            emailInputPlaceholder: "Example123@gmail.com",
+            title: "Klap"
+        },
+
+        rememberLastLogin: false
+
+
+    });
+
+    // Show lock's login widget
+    lock.show();
+</script>

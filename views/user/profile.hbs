@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">
 
 <div class="container">
@@ -12,13 +13,13 @@
                 <div class="profile-sidebar">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="http://images.iimg.in/c/569f4771c45d324bda8b4660-4-501-0-1453279096/google/user-icon-png-pnglogocom.img?crop=1" class="img-responsive" alt="">
+                        <img src="{{user.picture}}" class="img-responsive" alt="">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            {{user.local.email}}
+                            {{user.email}}
                         </div>
                         <div class="profile-usertitle-job">
 
@@ -26,6 +27,7 @@
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
+                    <h2>Hello {{user.nickname}}</h2>
                     <div class="profile-userbuttons">
     					<a class="btn btn-success btn-sm" href="/">Add picture</a>
               <a class="btn btn-danger btn-sm" href="/user/logout">Logout</a>
@@ -59,9 +61,19 @@
             <div class="col-md-9">
 
                 <div class="profile-content">
-                  {{#if accountSettings}}
-<h1>account settings</h1>
-                  {{/if}}
+                  Account Status: {{#if info.email_verified}}<h1>Verified</h1>{{/if}}
+                  Account Details:
+                  <ul>
+                    <li><strong>Full Name: </strong>{{info.user_metadata.full_name}}</li>
+                    <li><strong>Email:</strong> {{info.email}}</li>
+                    <li><strong>Username:</strong> {{info.name}}</li>
+                    <li><strong>Adress:</strong> {{info.user_metadata.address}}</li>
+                    <li><strong>Created at:</strong> {{info.created_at}}</li>
+                  </ul>
+<button type="button" name="button">Edit user informations</button>
+
+
+
 
 
                   {{#if orders}}

@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var app = express();
 var session = require('express-session');
 var passport = require('passport');
+var Auth0Strategy = require('passport-auth0');
 var flash = require('connect-flash');
 var mongoStore = require('connect-mongo')(session);
 var validator = require('express-validator');

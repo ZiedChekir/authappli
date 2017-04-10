@@ -11,10 +11,11 @@ router.get('/',isLoggedIn,function(req,res){
       accountSettings:true
   });
 });
-router.get('/orders',isLoggedIn,function(req,res){
+router.get('/orders',function(req,res){
   Order.find({user:req.user},function(err, orders){
-    if(err)
+    if(err){
       return res.write(err);
+      }
     var cart;
 
     orders.forEach(function(order){

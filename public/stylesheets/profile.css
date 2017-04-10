@@ -107,3 +107,6 @@ body {
   background: #fff;
   min-height: 460px;
 }
+.profile-sidebar{
+  background-color: grey;
+}

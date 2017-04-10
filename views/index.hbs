@@ -1,25 +1,74 @@
+<div class="row well">
+    <div class="col-md-6 col-md-offset-3">
+        <form action="/search" method="post">
+            <div class="input-group">
+                <input type="text" class="form-control search" name="search" placeholder="Search for...">
+                <span class="input-group-btn">
+           <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+              </span>
 
-{{#if successMessages}}
-<div class="alert alert-success">
-  {{successMessages}}
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+
+
+            <div class="form-group">
+                <label for="sel1">Filter By</label>
+                <select class="form-control" id="sel1" name="filter">
+                <option selected="selected" value="none">None</option>
+                <option value="hottest">Hottest</option>
+                <option value="popular">Popular</option>
+                <option value="newest">Newest</option>
+
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label for="sel1">Select Category</label>
+                <select class="form-control" id="sel2" name="category">
+                  <option selected="selected" value="none">Choose category</option>
+                  <option value="fps">fps</option>
+                  <option value="mmo">MMO</option>
+                  <option value="rpg">Rpg</option>
+                  <option value="indie">indie</option>
+                </select>
+            </div>
+          </div>
+        </div>
+
+
+            <!-- /input-group -->
+        </form>
+    </div>
 </div>
+
+<hr>
+<hr>
+{{#if successMessages}}
+    <div class="alert alert-success">
+        {{successMessages}}
+    </div>
 {{/if}}
 
 
 <div class="row">
 
-  {{# each Products}}
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img class="img-responsive" src= "{{this.imgpath}}" alt="call of duty">
-      <div class="caption">
-        <h3>{{this.title}}</h3>
-        <p>{{this.description}}</p>
-
-        <div class="clearfix" > <div class="price pull-left">
-          {{this.price}}$
-        </div> <div class="pull-right buy-sec"><a href="/add-to-cart/{{this._id}}" class="btn btn-default btn-success " role="button">Buy</a><a href="#" class="btn btn-default" role="button">More</a></div></div>
-      </div>
-    </div>
-  </div>
-  {{/each }}
+    {{# each Products}}
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img class="img-responsive" src="{{this.imgpath}}" alt="call of duty">
+                <div class="caption">
+                    <h3>{{this.title}}</h3>
+                    <p>{{this.description}}</p>
+                    <p>{{this.category}}</p>
+                    <div class="clearfix">
+                        <div class="price pull-left">
+                            {{this.price}}$
+                        </div>
+                        <div class="pull-right buy-sec"><a href="/add-to-cart/{{this._id}}" class="btn btn-default btn-success " role="button">Buy</a><a href="#" class="btn btn-default" role="button">More</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each }}
