@@ -14,6 +14,4 @@ then `npm start`  to run the server
 
 it s possible to use nodemon by running `nodemon [location to www file ]` location is bin/www
 
-zied is my bitch
-i fuck him every day
-h 
+testing
