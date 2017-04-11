@@ -1,0 +1,51 @@
+.navbar-inverse {
+    background-color:black;
+    color:black;
+    border-radius:0;
+    height: 60px;
+
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color:#ffffff;
+    font-size: 17px;
+    margin-top:4px;
+
+}
+
+.navbar-inverse .navbar-nav > .active > a {
+    color: white;
+    background-color:transparent;
+
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .open >a {
+    text-decoration: none;
+    background-color: black;
+
+
+}
+
+.navbar-inverse .navbar-brand {
+    color:white;
+    margin-top: 4px;
+    margin-left: 0;
+    font-size: 25px;
+}
+.navbar-inverse .navbar-toggle {
+    background-color:white;
+}
+.navbar-inverse .icon-bar {
+    background-color:black;
+}
+
+
+.navbar-inverse .navbar-nav > li  {
+    border-width: 10px;
+    border-color: red;
+
+}

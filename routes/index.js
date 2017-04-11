@@ -9,23 +9,72 @@ var Order = require('../models/order');
 
   mongoose.connect('localhost:27017/authapp');
 
-/* GET home page. */
 
 router.get('/', function(req, res, next) {
-  console.log( 'this is session' + res.locals.session);
-  console.log( 'this is user' + res.locals.user);
-  console.log( 'this is cart' + res.locals.cart);
+
+  var successMsg = req.flash('success')[0];
+  var query = {};
+  if(req.query.search){
+    query.title = req.query.search;
+  }
+  if(req.query.category){
+    query.category = req.query.category;
+  }
 
 
-var successMsg = req.flash('success')[0];
-  products.find(function(err, doc){
-    res.render('index', {
-       Products: doc,
+if(!query.title && !query.category  )
+{
+    products.find(function(err, doc){
+      res.render('index', {
+         Products: doc,
+         successMessages:successMsg
 
-       successMessages:successMsg
+       });
+    });
+}else{
+//if There is title and no category specified
+  if(query.title && query.category === 'none'){
 
-     });
-  });
+    products.find({title:query.title},function(err, doc){
+      res.render('index', {
+         Products: doc,
+         successMessages:successMsg
+
+       });
+    });
+  }
+  //if There is category and no title specified
+    if(!query.title && query.category){
+      console.log('category and none title');
+      products.find({category:query.category},function(err, doc){
+        res.render('index', {
+           Products: doc,
+           successMessages:successMsg
+
+         });
+      });
+    }
+    //if There is category and no title specified
+      if(query.title && query.category){
+        console.log('category and  title');
+        products.find({title:query.title,category:query.category},function(err, doc){
+          res.render('index', {
+             Products: doc,
+             successMessages:successMsg
+
+           });
+        });
+      }
+
+}
+
+
+
+
+});
+router.get('/login', function(req, res, next) {
+
+res.redirect('/user/login');
 });
 
 router.get('/cart', function(req, res, next) {
@@ -72,7 +121,7 @@ router.get('/add-to-cart/:id', function(req, res, next) {
 
 });
 
-router.get('/checkout',isLoggedIn, function(req, res, next) {
+router.get('/checkout', function(req, res, next) {
   if(!req.session.cart)
     return res.redirect('/cart');
   var errorMsg = req.flash("error")[0];
@@ -111,14 +160,12 @@ router.post('/checkout', function(req, res, next) {
     })
   });
 });
+router.post('/search',function(req,res,next){
+  var value= req.body.search;
+  var category = req.body.category;
+  var filter = req.body.filter;
+console.log(filter +  category + value);
+  res.redirect('/?search='+value+'&category='+category+'&filter='+filter);
+});
 
-function isLoggedIn(req, res, next) {
-// if user is authenticated in the session, carry on
-if (req.isAuthenticated())
-   return next();
-// if they aren't redirect them to the home page
-req.session.chekoutUrl = req.url;
-console.log(req.session.chekoutUrl);
-res.redirect('/user/login');
-}
  module.exports = router;
