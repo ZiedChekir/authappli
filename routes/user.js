@@ -7,6 +7,7 @@ var csrfProtection = require('csrf');
 var Order = require('../models/order');
 var Cart = require('../models/cart');
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+var ensureLoggedOut = require('connect-ensure-login').ensureLoggedOut();
 var loginOptions = require('../public/javascript/options');
 
 var profile = require('./profile');
@@ -22,22 +23,22 @@ router.get('/profile', ensureLoggedIn, function(req, res) {
   res.render('user/profile',{user: req.user,info:JSON.parse(req.user._raw)});
   console.log(req.user._raw);
 });
-router.get('/logout', function(req, res) {
+router.get('/logout',ensureLoggedIn,  function(req, res) {
     req.logout();
     res.redirect('/');
 });
 
-router.get('/signup', function(req, res) {
+router.get('/signup',ensureLoggedOut,  function(req, res) {
 
     res.render('user/signup', {messages: req.flash()});
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/login',ensureLoggedOut,  function(req, res, next) {
 
     res.render('user/login', {options:loginOptions,messages: req.flash()});
 });
 
-router.get('/callback', passport.authenticate('auth0', {failureRedirect: '/'}), function(req, res) {
+router.get('/callback',ensureLoggedOut,   passport.authenticate('auth0', {failureRedirect: '/'}), function(req, res) {
     res.redirect(req.session.returnTo || '/user/profile');
 });
 

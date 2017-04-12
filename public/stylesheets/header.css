@@ -1,3 +1,8 @@
+body,html{
+  margin:0;
+  padding:0;
+}
+
 .navbar-inverse {
     background-color:black;
     color:black;
