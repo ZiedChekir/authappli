@@ -1,9 +1,12 @@
-.thumbnail img{
+/*.thumbnail img{
 max-height: 180px;
 
 }
 .thumbnail {
   min-height: 100px;
+}*/
+.thumbnail{
+  height:50px;
 }
 .buy-sec a{
   width: 70px;
